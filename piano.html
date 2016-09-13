@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Piano</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script>
+
+	$('.typebutton').click(function() 
+	{
+		$(this).toggleClass('active');
+	});
+
+	var audioCtx = new (window.AudioContext)();
+
+	var type = "square";
+
+	function changeType()
+	{
+		if (type == "sawtooth")
+			{
+				type = "square";
+			} else { type = "sawtooth"}
+	};
+
+	function playNote(pitch)
+	{
+		var oscillator = audioCtx.createOscillator();
+
+		oscillator.type = type;
+		oscillator.connect(audioCtx.destination);
+		oscillator.frequency.value = pitch;
+
+		oscillator.start();
+		oscillator.stop(audioCtx.currentTime + .2);
+		delete oscillator;
+
+	};
+
+
+	</script>
+
+	<link rel="stylesheet" href="piano.css">
+
+</head>
+<body>
+
+<h1>HTML5 PIANO</h1>
+
+<h1>
+
+<img src="square.png">
+
+<label class="switch">
+	<input type="checkbox" onclick="changeType()">
+	<div class="slider">
+	</div>
+</label>
+
+<img src="saw.png">
+
+</h1>
+
+<p>
+
+<div class="piano">
+
+<button class="spacer"></button>
+<button onmousedown="playNote(138.59)" class="blackkeys"></button>
+<button onmousedown="playNote(155.56)" class="blackkeys"></button>
+<button class="spacer2"></button>
+<button onmousedown="playNote(185.00)" class="blackkeys"></button>
+<button onmousedown="playNote(207.65)" class="blackkeys"></button>
+<button onmousedown="playNote(233.08)" class="blackkeys"></button>
+<button class="spacer2"></button>
+
+<button onmousedown="playNote(277.18)" class="blackkeys"></button>
+<button onmousedown="playNote(311.13)" class="blackkeys"></button>
+<button class="spacer2"></button>
+<button onmousedown="playNote(369.99)" class="blackkeys"></button>
+<button onmousedown="playNote(415.30)" class="blackkeys"></button>
+<button onmousedown="playNote(466.16)" class="blackkeys"></button>
+<button class="spacer2"></button>
+
+<button onmousedown="playNote(554.37)" class="blackkeys"></button>
+<button onmousedown="playNote(622.25)" class="blackkeys"></button>
+<button class="spacer2"></button>
+<button onmousedown="playNote(739.99)" class="blackkeys"></button>
+<button onmousedown="playNote(830.61)" class="blackkeys"></button>
+<button onmousedown="playNote(932.33)" class="blackkeys"></button>
+<button class="spacer"></button>
+<p>
+
+<button onmousedown="playNote(130.81)" class="whitekeys" ></button>
+<button onmousedown="playNote(146.83)" class="whitekeys"></button>
+<button onmousedown="playNote(164.81)" class="whitekeys"></button>
+<button onmousedown="playNote(174.61)" class="whitekeys" ></button>
+<button onmousedown="playNote(196.00)" class="whitekeys"></button>
+<button onmousedown="playNote(220.00)" class="whitekeys" ></button>
+<button onmousedown="playNote(246.94)" class="whitekeys"></button>
+
+<button onmousedown="playNote(261.63)" class="whitekeys" ></button>
+<button onmousedown="playNote(293.66)" class="whitekeys"></button>
+<button onmousedown="playNote(329.63)" class="whitekeys"></button>
+<button onmousedown="playNote(349.23)" class="whitekeys" ></button>
+<button onmousedown="playNote(392.00)" class="whitekeys"></button>
+<button onmousedown="playNote(440.00)" class="whitekeys" ></button>
+<button onmousedown="playNote(493.88)" class="whitekeys"></button>
+
+<button onmousedown="playNote(523.25)" class="whitekeys" ></button>
+<button onmousedown="playNote(587.33)" class="whitekeys"></button>
+<button onmousedown="playNote(659.25)" class="whitekeys"></button>
+<button onmousedown="playNote(698.46)" class="whitekeys" ></button>
+<button onmousedown="playNote(783.99)" class="whitekeys"></button>
+<button onmousedown="playNote(880.00)" class="whitekeys" ></button>
+<button onmousedown="playNote(987.77)" class="whitekeys"></button>
+
+
+
+</div>
+</body>
+</html>
